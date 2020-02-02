@@ -1,0 +1,36 @@
+- hosts: master
+  remote_user: ansible
+  become: yes
+  become_method: "sudo"
+  gather_facts: false
+  tasks:
+    - name: get join command
+      shell:  kubeadm token create --ttl 0  --print-join-command 
+      register: join_command_raw
+
+    - name: set join command
+      set_fact:
+        join_command: "{{ join_command_raw.stdout }}"
+
+- hosts: worker 
+  become: yes
+  tasks:
+    - name: join cluster
+      shell: "{{ hostvars['master'].join_command }} >> node_joined.txt"
+      args:
+        chdir: $HOME
+        creates: node_joined.txt
+
+    - name: start docker
+      service:
+        name: docker
+        enabled: yes
+        state: restarted
+
+    - name: start kubelet
+      service:
+        name: kubelet
+        enabled: yes
+        state: restarted
+
+

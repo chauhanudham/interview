@@ -1,0 +1,45 @@
+- hosts: master
+  become: yes
+  remote_user: ansible
+  become_method: sudo
+  tasks:
+    - name: initialize the cluster
+      shell: kubeadm init  --pod-network-cidr=10.244.0.0/16     >> cluster_initialized.txt
+      args:
+        chdir: /root
+        creates: cluster_initialized.txt
+
+    - name: create .kube directory
+      file: dest=/root/.kube  owner=root group=root state=directory mode=u=rwX,g=rX,o=rX recurse=yes 
+
+    - name: copy admin.conf to user's kube config
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: /root/.kube/config
+        remote_src: yes
+        owner: root
+        group: root
+
+    - name: apply network 
+      shell: kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"  >> pod_network_setup.txt
+      args:
+        chdir: /root
+        creates: pod_network_setup.txt
+
+    - name: sleep for 5 sec 
+      shell: sleep 05
+
+    - name: start docker
+      service:
+        name: docker
+        enabled: yes
+        state: restarted
+    
+    - name: sleep for 5 sec
+      shell: sleep 05
+    
+    - name: start kubelet
+      service:
+        name: kubelet
+        enabled: yes
+        state: restarted

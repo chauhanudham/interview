@@ -1,0 +1,7 @@
+#localhost  ansible_connection=local
+
+[master]
+master ansible_host=3.93.48.158 ansible_user=ansible 
+
+[worker]
+worker ansible_host=54.86.61.157 ansible_user=ansible

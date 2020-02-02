@@ -1,0 +1,17 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+
+    - name: change directory
+      shell: cd /opt/data/infra-code/
+
+    - name: terraform init run
+      shell: terraform init chdir=/opt/data/infra-code/
+
+    - name:  terraform paln  run
+      shell: terraform plan chdir=/opt/data/infra-code/  >> /opt/data/infra-code/plan.txt
+
+    - name:  terraform apply  run
+      shell: terraform apply -auto-approve  chdir=/opt/data/infra-code/  >> /opt/data/infra-code/apply.txt
