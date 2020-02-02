@@ -36,6 +36,8 @@ $ chmod +x  worker-script.sh
    Ansible Setup in Local Machine 
 ------------------------------------------
 
+Ansible is a universal language, unraveling the mystery of how work gets done.  Turn tough tasks into repeatable playbooks. Roll out enterprise-wide protocols with the push of a button.
+
 $ yum install epel-release -y
 
 $  yum install python ansible  -y
