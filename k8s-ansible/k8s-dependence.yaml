@@ -6,10 +6,10 @@
    - name: Install Docker packages and dependance packages 
      command: yum install  yum-utils device-mapper-persistent-data lvm2 -y 
 
-   - name: Install Docker  yum-config-manager
+   - name: Install Docker yum-config-manager
      command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
  
-   - name: swap off 
+   - name: swapoff 
      command: swapoff -a 
          
    - name: Install docker-ce
@@ -56,7 +56,3 @@
        name: kubelet
        enabled: yes
        state: started
-
-
-
-
