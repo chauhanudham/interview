@@ -46,7 +46,7 @@ $ echo "ansible  ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 $ useradd ansible
 
-$ sudo su - ansible
+$ su - ansible
 
 $ mkdir -p /home/ansible/.ssh
 
@@ -71,6 +71,8 @@ $ ansible-playbook infra-terraform.yaml
 in this path /opt/data/k8s-ansible/hosts.
 
 4. Local ansible machine connect kK8s master and K8s worker server then run the playbook one by one , your cluster will be ready with in 5 min .  
+
+$ cd /opt/data/k8s-ansible/
 
 $ ansible-playbook k8s-dependence.yaml
 
