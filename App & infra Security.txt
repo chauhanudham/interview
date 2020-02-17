@@ -1,0 +1,76 @@
+Dear Udham,
+
+As per the completion of the first assessment, some more points need to be taken care of in order to complete the full infrastructure creation.
+
+1. On creation of the kubernetes cluster we need to make sure we monitor the deployed application.
+
+What do we use for this?
+
+What tools do we need?
+
+What do we mean by monitoring?
+
+Please clarify and create a deployment and configuration of necessary tools and applications needed to get the maximum of monitoring for the cluster.
+
+
+2. As to the above point, we need to ensure maximum security of our application and infrastructure.
+
+How do we go about this?
+
+What are the required tools and policies to prevent attacks or mistreatment of our infrastructure and application?
+
+As with the above point, please create the necessary tools deployment and configuration for ensuring security and reaction mechanisms.
+
+Please provide your answers by updating the assessment that you have already submitted.
+
+--------------------------------------------------------------------------------------
+                                        Answer 
+--------------------------------------------------------------------------------------
+
+For ensure the Application Security and infrastructure  we need to Perform the DAST (Dynamic application security testing ) 
+and SAST (Static Application Security Testing) for that we have to have Couple of tools ie. For DAST  Burpsuite And for SAST Checkmarx .
+we required the license based on that I can deployed and configured the tools for as per the security requirement 
+
+Cloud Security infra monitoring : Splunk .  When you change your configuration in Splunk Web, that change is written to a copy of the 
+configuration file for that setting. Splunk software creates a copy of this configuration file (if it does not exist), writes the change to 
+that copy, and adds it to a directory under $SPLUNK_HOME/etc/.... The directory that the new file is added to depends on a number of factors 
+that are discussed in Configuration file directories in this manual. The most common directory is $SPLUNK_HOME/etc/system/local, which is used 
+in the example.
+
+If you add a new index in Splunk Web, the software performs the following actions:
+1. Checks for a copy of the file.
+2. If no copy exists, the software creates a copy of indexes.conf and adds it to a directory, such as $SPLUNK_HOME/etc/system/local.
+3. Writes the change to the copy of indexes.conf.
+4. Leaves the default file unchanged in $SPLUNK_HOME/etc/system/default.
+
+Application Security we can have to test OWASP top 10 for that we have use to ASVS Approach (Application Security Verification Standard )
+
+ASVS Level :  The ASVS defines set of levels of verification, with each level increasing in depth as the verification moves up the levels.
+
+ASVS Level 1 : Opportunistic. Considered by OWASP to be the minimum required for all applications on the web. 
+CISO consider level 1 to be the minimum mandatory security required for Project to project applications.
+
+ASVS Level 2 : is typically appropriate for applications that handle significant business¬ to¬ business transactions, implement business ¬critical 
+or sensitive functions, or process other sensitive assets
+
+ASVS Category  
+1.	Architecture
+2.	Authentication
+3.	Session
+4.	Malicious Input Handling
+5.	Cryptography at Rest
+6.	Error Handling
+7.	Data Protection
+8.	Communications Security
+9.	HTTP Security
+10.	Files and Resources
+11.	Web services
+12.	Configuration
+
+Please find the detailed ASVS  for Application Security based on the ASVS levels we can secure the application. 
+
+For more information kindly refer the attached ASVS App & infra Security-Sheet which is availabe on GitHub .
+
+https://github.com/chauhanudham/interview.git
+
+----------------------------------------- The End ------------------------------------------------------------
