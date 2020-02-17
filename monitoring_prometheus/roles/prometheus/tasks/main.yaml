@@ -1,0 +1,45 @@
+---
+- name: Transfer the installation script for PROMETHEUS
+  copy: src=prometheus_installation.sh dest=/tmp/prometheus_installation.sh mode=0755
+
+- name: Start installation process for PROMETHEUS
+  command: /bin/sh /tmp/prometheus_installation.sh
+  
+- name: Transfer the installation script for Node_Exporter
+  copy: src=node_exporter_installation.sh dest=/tmp/node_exporter_installation.sh mode=0755
+
+#- name: Remove spacil character from SH file Node_Exporter
+#  command: dos2unix /tmp/node_exporter_installation.sh
+  
+- name: Start installation process for Node_Exporter
+  command: /bin/sh /tmp/node_exporter_installation.sh
+
+- name: Transfer the installation script for GRAFANA
+  copy: src=grafana_installation.sh dest=/tmp/grafana_installation.sh mode=0755
+
+- name: Start installation process for GRAFANA
+  command: /bin/sh /tmp/grafana_installation.sh
+  
+- name: Transfer the DB for GRAFANA
+  copy: src=grafana.db.txt1 dest=/var/lib/grafana/grafana.db mode=0644
+
+- name: Transfer the INI for GRAFANA
+  copy: src=grafana.ini dest=/etc/grafana/grafana.ini mode=0640
+
+- name: Transfer script for restart GRAFANA and PROMETHEUS services
+  copy: src=restart_services.sh dest=/tmp/restart_services.sh mode=0755
+  
+- name: Restart GRAFANA and PROMETHEUS services
+  command: /bin/sh /tmp/restart_services.sh
+
+- name: Transfer the installation script for Alertmanager
+  copy: src=alertmanager_installation.sh dest=/tmp/alertmanager_installation.sh mode=0755
+
+#- name: Remove spacil character from SH file Alertmanager
+#  command: dos2unix /tmp/alertmanager_installation.sh
+  
+- name: Start installation process for Alertmanager
+  command: /bin/sh /tmp/alertmanager_installation.sh
+
+...
+
